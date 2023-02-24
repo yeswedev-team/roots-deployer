@@ -35,3 +35,13 @@ set('bin/wp', 'wp');
 task('acorn:discover', function () {
     run("cd {{release_path}} && {{bin/wp}} acorn package:discover && {{bin/wp}} acorn optimize:clear");
 })->desc('Discover acorn packages');
+
+set('sage/dist_path', '/public');
+set('sage/build_command', 'build');
+
+desc ( 'Bedrock build assets locally and upload' );
+task ( 'sage:build:assets:local', function () {
+    runLocally( "cd {{local_root}}/{{theme_path}} && yarn run {{sage/build_command}}" );
+    upload( '{{local_root}}/{{theme_path}}{{sage/dist_path}}', '{{release_path}}/{{theme_path}}' );
+    upload( '{{local_root}}/{{theme_path}}/node_modules', '{{release_path}}/{{theme_path}}' );
+} );
