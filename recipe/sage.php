@@ -28,3 +28,10 @@ task ( 'sage:clean:nodemodules', function () {
         run( "rm -rf {{deploy_path}}/releases/{$releases[1]}/{{theme_path}}/node_modules");
     }
 } );
+
+set('option_export', '');
+set('bin/wp', 'wp');
+
+task('acorn:discover', function () {
+    run("cd {{release_path}} && {{bin/wp}} acorn package:discover && {{bin/wp}} acorn optimize:clear");
+})->desc('Discover acorn packages');
