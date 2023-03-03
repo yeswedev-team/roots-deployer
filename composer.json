@@ -2,7 +2,9 @@
   "name": "yeswedev-team/roots-deployer",
   "description": "Deployer recipes for Roots Bedrock and Sage",
   "require": {
-    "deployer/deployer": "^7.0"
+    "deployer/deployer": "^7.0",
+    "php": "^8.0",
+    "ext-curl": "*"
   },
   "license": "MIT",
   "authors": [
@@ -10,5 +12,16 @@
       "name": "Charles Dupoiron",
       "email": "contact@yeswedev.bzh"
     }
-  ]
+  ],
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.7"
+  },
+  "scripts": {
+    "lint": [
+      "phpcs --extensions=php --standard=PSR12 recipe"
+    ],
+    "lint-fix": [
+      "php vendor/bin/phpcbf recipe"
+    ]
+  }
 }
