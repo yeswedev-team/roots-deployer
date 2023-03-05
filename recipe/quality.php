@@ -9,12 +9,12 @@ use Exception;
  */
 function checkURLs(array $urls)
 {
-    $max_concurrent_requests = 100;
+    $max_concurrent_requests = 40;
 
     $chunks = array_chunk($urls, $max_concurrent_requests);
 
     foreach ($chunks as $chunk) {
-        info("Launch 100 requests");
+        info("Launch $max_concurrent_requests requests");
         check100URLs($chunk);
     }
 }
