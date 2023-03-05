@@ -28,8 +28,8 @@ task(
     'acorn:discover',
     function () {
         run(
-            "cd {{release_path}} && '.
-            '{{bin/wp}} acorn package:discover && {{bin/wp}} acorn optimize"
+            "cd {{release_path}} && ".
+            "{{bin/wp}} acorn package:discover && {{bin/wp}} acorn optimize"
         );
     }
 )->desc('Discover acorn packages');
