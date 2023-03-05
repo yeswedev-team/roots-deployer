@@ -37,6 +37,10 @@ function check100URLs(array $urls)
         static function ($url) use ($multi_handle) {
             $curl_handle = curl_init($url);
             curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+            $userpwd = get('auth_basic');
+            if ($userpwd && $userpwd !== '') {
+                curl_setopt($curl_handle, CURLOPT_USERPWD, $userpwd);
+            }
             curl_multi_add_handle($multi_handle, $curl_handle);
             return $curl_handle;
         },

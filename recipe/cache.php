@@ -2,7 +2,6 @@
 
 namespace Deployer;
 
-set('curl_options', '');
 set('public_folder', 'web');
 
 set('opcache_reset_url', 'opcache_reset');
