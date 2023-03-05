@@ -21,6 +21,7 @@ function checkURLs(array $urls)
 
 function check100URLs(array $urls)
 {
+    $okHttpStatus = [200, 301];
     foreach ($urls as $url) {
         $extension = pathinfo($url, PATHINFO_EXTENSION);
         if ($extension === 'xml') {
@@ -57,8 +58,7 @@ function check100URLs(array $urls)
     foreach ($curl_handles as $curl_handle) {
         $url = curl_getinfo($curl_handle, CURLINFO_EFFECTIVE_URL);
         $http_code = curl_getinfo($curl_handle, CURLINFO_HTTP_CODE);
-        info('http_code:' . $http_code);
-        if ($http_code !== 200) {
+        if (!in_array($http_code, $okHttpStatus)) {
             throw new Exception("$url returned $http_code");
         }
         curl_multi_remove_handle($multi_handle, $curl_handle);
