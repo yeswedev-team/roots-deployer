@@ -28,7 +28,7 @@ task(
     'acorn:discover',
     function () {
         run(
-            "cd /home/yeswedev/avf-biomedical.git/releases/5 && '.
+            "cd {{release_path}} & && '.
             '{{bin/wp}} acorn package:discover && {{bin/wp}} acorn optimize"
         );
     }
