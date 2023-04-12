@@ -11,37 +11,16 @@ task(
     )
 );
 
-set('node_bin', '');
-
-desc('Install node dependencies');
-task(
-    'sage:build:yarn:install',
-    function () {
-        run(
-            'export PATH={{node_bin}}:$PATH && echo $PATH {{node_bin}} && ' .
-            'cd {{release_path}}/{{theme_path}} && {{node_bin}}/yarn'
-        );
-    }
-);
-
-desc('Yarn build');
-task(
-    'sage:build:yarn:build',
-    function () {
-        run(
-            'export PATH={{node_bin}}:$PATH && echo $PATH {{node_bin}} && ' .
-            'cd {{release_path}}/{{theme_path}} && {{node_bin}}/yarn build'
-        );
-    }
-);
+set('bin/node', '{{node_bin}}');
 
 desc('Compile the theme on server');
 task(
     'sage:build:assets:server',
-    [
-        'sage:build:yarn:install',
-        'sage:build:yarn:build'
-    ]
+    function () {
+        run(
+            'export PATH={{bin/node}}:$PATH && cd {{release_path}}/{{theme_path}} && {{bin/node}}/yarn && cd {{release_path}}/{{theme_path}} && {{bin/node}}/yarn build'
+        );
+    }
 );
 
 desc('Remove nodes_modules folder from previous release');
