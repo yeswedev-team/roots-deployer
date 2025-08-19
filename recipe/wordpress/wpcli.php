@@ -9,8 +9,8 @@ desc('Activate maintenance mode');
 task(
     'maintenance:activate',
     function () {
-        run("cd {{release_path}} && {{bin/wp}} maintenance-mode activate");
-        info(run("cd {{release_path}} && {{bin/wp}} maintenance-mode status"));
+        run("cd {{release_path}} && {{bin/php}} {{bin/wp}} maintenance-mode activate");
+        info(run("cd {{release_path}} && {{bin/php}} {{bin/wp}} maintenance-mode status"));
     }
 );
 
@@ -19,8 +19,8 @@ desc('Deactivate maintenance mode ');
 task(
     'maintenance:deactivate',
     function () {
-        run("cd {{release_path}} && {{bin/wp}} maintenance-mode deactivate");
-        info(run("cd {{release_path}} && {{bin/wp}} maintenance-mode status"));
+        run("cd {{release_path}} && {{bin/php}} {{bin/wp}} maintenance-mode deactivate");
+        info(run("cd {{release_path}} && {{bin/php}} {{bin/wp}} maintenance-mode status"));
     }
 );
 
@@ -29,7 +29,7 @@ task(
     function () {
         run(
             "cd {{release_path}} && ".
-            "{{bin/wp}} acorn package:discover && {{bin/wp}} acorn optimize"
+            "{{bin/php}} {{bin/wp}} acorn package:discover && {{bin/php}} {{bin/wp}} acorn optimize"
         );
     }
 )->desc('Discover acorn packages');
