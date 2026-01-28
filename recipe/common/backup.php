@@ -6,7 +6,7 @@ desc('Remote database backup');
 task(
     'db:backup',
     function () {
-        $checkCurrent = run("test -L {{deploy_path}}/current && echo '0' || echo '1' ");
+        $checkCurrent = (int)run("test -L {{deploy_path}}/current && echo '0' || echo '1' ");
 
         if ($checkCurrent === 0) {
             $exportFilename = get('application') . '.' . date('Y-m-d-H:i') . '.sql';
